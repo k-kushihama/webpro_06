@@ -101,8 +101,9 @@ let station = [
 
 app.get("/keiyo", (req, res) => {
   // 本来ならここにDBとのやり取りが入る
-  res.render('db1', { data: station });
+  res.render('db2', { data: station });
 });
+
 
 app.get("/keiyo_add", (req, res) => {
   let id = req.query.id;
