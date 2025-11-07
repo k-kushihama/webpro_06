@@ -112,7 +112,6 @@ app.get("/keiyo_add", (req, res) => {
   station.push( newdata );
   res.redirect('/public/keiyo_add.html');
 
-
 });
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
