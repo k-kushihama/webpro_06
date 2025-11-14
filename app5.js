@@ -137,6 +137,19 @@ app.get("/keiyo2/:number", (req, res) => {
   res.render('keiyo2_detail', {data: detail} );
 });
 
+app.get("/keiyo2_add", (req, res) => {
+  let id = req.query.id;
+  let code = req.query.code;
+  let name = req.query.name;
+  let change = req.query.change;
+  let passengers = req.query.passengers;
+  let distance = req.query.distance;
+  let newdata = { id: id, code: code, name: name , change: change, passengers: passengers, distance: distance };
+  station2.push( newdata );
+  res.redirect('/public/keiyo2_add.html');
+
+});
+
 
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
