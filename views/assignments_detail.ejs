@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>課題詳細</title>
+</head>
+<body>
+    <div>
+        <a href="/assignments">← 一覧に戻る</a>
+        
+        <div>
+            <span><%= item.subject %></span>
+            <span><%= item.status %></span>
+        </div>
+        
+        <h1><%= item.title %></h1>
+        <div>提出期限: <%= item.deadline %></div>
+        
+        <div><%= item.desc %></div>
+        
+        <div>
+            <a href="/assignments/edit/<%= item.id %>">編集する</a>
+            <a href="/assignments/delete/<%= item.id %>" onclick="return confirm('本当に削除しますか？');">削除</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>編集</title>
+</head>
+<body>
+    <div>
+        <h1>課題の編集</h1>
+        <form action="/assignments/update/<%= item.id %>" method="POST">
+            <div>
+                <label>科目名</label>
+                <input type="text" name="subject" value="<%= item.subject %>" required>
+            </div>
+            <div>
+                <label>課題タイトル</label>
+                <input type="text" name="title" value="<%= item.title %>" required>
+            </div>
+            <div>
+                <label>提出期限</label>
+                <input type="date" name="deadline" value="<%= item.deadline %>" required>
+            </div>
+            <div>
+                <label>ステータス</label>
+                <select name="status">
+                    <option value="未着手" <%= item.status === '未着手' ? 'selected' : '' %>>未着手</option>
+                    <option value="進行中" <%= item.status === '進行中' ? 'selected' : '' %>>進行中</option>
+                    <option value="完了" <%= item.status === '完了' ? 'selected' : '' %>>完了</option>
+                </select>
+            </div>
+            <div>
+                <label>詳細・メモ</label>
+                <textarea name="desc"><%= item.desc %></textarea>
+            </div>
+            
+            <button type="submit">更新を保存</button>
+            <a href="/assignments/detail/<%= item.id %>">キャンセル</a>
+        </form>
+    </div>
+</body>
+</html>

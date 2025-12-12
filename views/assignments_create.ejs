@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新規登録</title>
+</head>
+<body>
+    <div>
+        <h1>新規課題の登録</h1>
+        <form action="/assignments" method="POST">
+            <div>
+                <label>科目名</label>
+                <input type="text" name="subject" required>
+            </div>
+            <div>
+                <label>課題タイトル</label>
+                <input type="text" name="title" required>
+            </div>
+            <div>
+                <label>提出期限</label>
+                <input type="date" name="deadline" required>
+            </div>
+            <div>
+                <label>ステータス</label>
+                <select name="status">
+                    <option value="未着手" selected>未着手</option>
+                    <option value="進行中">進行中</option>
+                    <option value="完了">完了</option>
+                </select>
+            </div>
+            <div>
+                <label>詳細・メモ</label>
+                <textarea name="desc"></textarea>
+            </div>
+            
+            <button type="submit">登録する</button>
+            <a href="/assignments">キャンセル</a>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>課題一覧</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>課題一覧</h1>
+            <a href="/assignments/create">＋ 新規作成</a>
+        </div>
+
+        <% if (data.length === 0) { %>
+            <div>
+                <p>現在、課題はありません。</p>
+            </div>
+        <% } else { %>
+            <div>
+                <% data.forEach(item => { %>
+                    <% 
+                       const today = new Date();
+                       const dead = new Date(item.deadline);
+                       const diffDays = Math.ceil((dead - today) / (1000 * 60 * 60 * 24));
+                       const isUrgent = diffDays <= 3; 
+                    %>
+                    <div class="card">
+                        <a href="/assignments/detail/<%= item.id %>">
+                            <div>
+                                <span><%= item.subject %></span>
+                                <span><%= item.status %></span>
+                            </div>
+                            <h2><%= item.title %></h2>
+                            <div>
+                                <span>📅 <%= item.deadline %></span>
+                                <% if(isUrgent && item.status !== '完了') { %> <span>(あと<%= diffDays %>日)</span> <% } %>
+                            </div>
+                        </a>
+                    </div>
+                <% }); %>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>

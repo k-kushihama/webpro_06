@@ -182,6 +182,109 @@ app.post("/keiyo2/update/:number", (req, res) => {
 });
 
 
+let assignments = [
+  {
+    id: 1,
+    subject: "Webプログラミング",
+    title: "レポート課題",
+    deadline: "2025-12-28",
+    status: "進行中",
+    desc: "仕様書に基づき，実装を行う．"
+  },
+  {
+    id: 2,
+    subject: "アジャイルワーク1",
+    title: "結合課題",
+    deadline: "2025-12-16",
+    status: "進行中",
+    desc: ""
+  }
+];
+
+
+const findIndexById = (id) => {
+  return assignments.findIndex(item => item.id == id);
+};
+
+app.get("/assignments", (req, res) => {
+
+  const sortedData = [...assignments].sort((a, b) => {
+    return new Date(a.deadline) - new Date(b.deadline);
+  });
+  res.render("assignments", { data: sortedData });
+});
+
+app.get("/assignments/detail/:id", (req, res) => {
+  const id = req.params.id;
+  const index = findIndexById(id);
+  
+  if (index === -1) return res.redirect("/assignments"); 
+  
+  res.render("assignments_detail", { item: assignments[index] });
+});
+
+app.get("/assignments/create", (req, res) => {
+  res.render("assignments_create");
+});
+
+app.post("/assignments", (req, res) => {
+
+  const newId = assignments.length > 0 ? Math.max(...assignments.map(a => a.id)) + 1 : 1;
+  
+  const newItem = {
+    id: newId,
+    subject: req.body.subject,
+    title: req.body.title,
+    deadline: req.body.deadline,
+    status: req.body.status || "未着手",
+    desc: req.body.desc
+  };
+
+  assignments.push(newItem);
+  res.redirect("/assignments");
+});
+
+app.get("/assignments/edit/:id", (req, res) => {
+  const id = req.params.id;
+  const index = findIndexById(id);
+  
+  if (index === -1) return res.redirect("/assignments");
+
+  res.render("assignments_edit", { item: assignments[index] });
+});
+
+app.post("/assignments/update/:id", (req, res) => {
+  const id = req.params.id;
+  const index = findIndexById(id);
+
+  if (index !== -1) {
+
+    assignments[index] = {
+      id: Number(id),
+      subject: req.body.subject,
+      title: req.body.title,
+      deadline: req.body.deadline,
+      status: req.body.status,
+      desc: req.body.desc
+    };
+  }
+  
+  res.redirect("/assignments");
+});
+
+app.get("/assignments/delete/:id", (req, res) => {
+  const id = req.params.id;
+  const index = findIndexById(id);
+
+  if (index !== -1) {
+    assignments.splice(index, 1);
+  }
+  
+  res.redirect("/assignments");
+});
+
+
+
 
 
 
