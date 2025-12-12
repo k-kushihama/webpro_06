@@ -198,6 +198,14 @@ let assignments = [
     deadline: "2025-12-16",
     status: "進行中",
     desc: ""
+  },
+  {
+    id: 3,
+    subject: "データサイエンス",
+    title: "最終レポート",
+    deadline: "2025-12-23",
+    status: "進行中",
+    desc: ""
   }
 ];
 
@@ -282,10 +290,6 @@ app.get("/assignments/delete/:id", (req, res) => {
   
   res.redirect("/assignments");
 });
-
-
-
-
 
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

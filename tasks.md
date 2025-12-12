@@ -8,14 +8,14 @@
 - [x] 対象とするシステムの決定 :thinking:
   - [x] 機能要件の洗い出し（一覧表示，詳細確認，追加，編集，削除の5機能）
 - [x] データ構造の決定 :thinking:
-  - [ ] 課題 (assignments) テーブルの設計（科目名, 締切, 内容等）
+  - [x] 課題 (assignments) テーブルの設計（科目名, 締切, 内容等）
 - [x] ページ構造と遷移の検討 :thinking:
   - [x] ページ遷移図の作成 (Mermaid) :writing_hand:
     - [x] 課題一覧画面からの遷移作成
     - [x] 編集・追加フローの遷移作成
 - [x] HTTPメソッドとリソース名一覧の作成 :writing_hand:
-  - [ ] `/assignments` 関連（一覧・登録）のルーティング定義
-  - [ ] `/assignments/:id` 関連（詳細・更新・削除）のルーティング定義
+  - [x] `/assignments` 関連（一覧・登録）のルーティング定義
+  - [x] `/assignments/:id` 関連（詳細・更新・削除）のルーティング定義
 - [ ] ドキュメントの構成の検討 :thinking:
   - [ ] 概要 :writing_hand:
   - [ ] HTTPメソッドとリソース名一覧 :writing_hand:
