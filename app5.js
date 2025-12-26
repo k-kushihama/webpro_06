@@ -513,7 +513,7 @@ app.get("/students/:id/delete", (req, res) => {
   res.redirect("/students");
 });
 
-//404への対応． ---
+//404への対応．
 app.use((req, res) => {
   const path = req.path;
 
