@@ -292,4 +292,4 @@ app.get("/assignments/delete/:id", (req, res) => {
 });
 
 
-app.listen(8080, () => console.log("Example app listening on port 8080!"));
+app.listen(8080, () => console.log("server running at port http://localhost:8080!"));
