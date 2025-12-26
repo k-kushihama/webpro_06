@@ -415,7 +415,7 @@ let students = [
   }
 ];
 
-const findIndexByIdSt = (id) => {
+const findIndexByIdst = (id) => {
   return students.findIndex(item => item.id == id);
 };
 
@@ -446,7 +446,7 @@ app.get("/students/create", (req, res) => {
 
 app.get("/students/:id", (req, res) => {
   const id = req.params.id;
-  const index = findIndexByIdSt(id);
+  const index = findIndexByIdst(id);
   if (index === -1) return res.redirect("/students"); 
   res.render("students_detail", { item: students[index] });
 });
@@ -479,14 +479,14 @@ app.post("/students", (req, res) => {
 
 app.get("/students/:id/edit", (req, res) => {
   const id = req.params.id;
-  const index = findIndexByIdSt(id);
+  const index = findIndexByIdst(id);
   if (index === -1) return res.redirect("/students");
   res.render("students_edit", { item: students[index] });
 });
 
 app.post("/students/:id/update", (req, res) => {
   const id = req.params.id;
-  const index = findIndexByIdSt(id);
+  const index = findIndexByIdst(id);
 
   if (index !== -1) {
     const days = ensureArray(req.body.day);
@@ -508,7 +508,7 @@ app.post("/students/:id/update", (req, res) => {
 
 app.get("/students/:id/delete", (req, res) => {
   const id = req.params.id;
-  const index = findIndexByIdSt(id);
+  const index = findIndexByIdst(id);
   if (index !== -1) students.splice(index, 1);
   res.redirect("/students");
 });
