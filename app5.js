@@ -9,6 +9,7 @@ app.use(express.json()); // JSONデータを解析
 app.set('view engine', 'ejs');
 app.use("/public", express.static(__dirname + "/public"));
 
+
 app.get("/hello1", (req, res) => {
   const message1 = "Hello world";
   const message2 = "Bon jour";
@@ -181,15 +182,15 @@ app.post("/keiyo2/update/:number", (req, res) => {
   res.redirect('/keiyo2' );
 });
 
-
+// ここから課題管理アプリケーション
 let assignments = [
   {
     id: 1,
     subject: "Webプログラミング",
-    title: "レポート課題",
+    title: "仕様書提出",
     deadline: "2025-12-28",
     status: "進行中",
-    desc: "仕様書に基づき，実装を行う．"
+    desc: ""
   },
   {
     id: 2,
@@ -210,7 +211,7 @@ let assignments = [
 ];
 
 
-const findIndexById = (id) => {
+const findIndexByIdas = (id) => {
   return assignments.findIndex(item => item.id == id);
 };
 
@@ -222,17 +223,17 @@ app.get("/assignments", (req, res) => {
   res.render("assignments", { data: sortedData });
 });
 
-app.get("/assignments/detail/:id", (req, res) => {
+app.get("/assignments/create", (req, res) => {
+  res.render("assignments_create");
+});
+
+app.get("/assignments/:id", (req, res) => {
   const id = req.params.id;
-  const index = findIndexById(id);
+  const index = findIndexByIdas(id);
   
   if (index === -1) return res.redirect("/assignments"); 
   
   res.render("assignments_detail", { item: assignments[index] });
-});
-
-app.get("/assignments/create", (req, res) => {
-  res.render("assignments_create");
 });
 
 app.post("/assignments", (req, res) => {
@@ -252,18 +253,18 @@ app.post("/assignments", (req, res) => {
   res.redirect("/assignments");
 });
 
-app.get("/assignments/edit/:id", (req, res) => {
+app.get("/assignments/:id/edit", (req, res) => {
   const id = req.params.id;
-  const index = findIndexById(id);
+  const index = findIndexByIdas(id);
   
   if (index === -1) return res.redirect("/assignments");
 
   res.render("assignments_edit", { item: assignments[index] });
 });
 
-app.post("/assignments/update/:id", (req, res) => {
+app.post("/assignments/:id/update", (req, res) => {
   const id = req.params.id;
-  const index = findIndexById(id);
+  const index = findIndexByIdas(id);
 
   if (index !== -1) {
 
@@ -280,9 +281,9 @@ app.post("/assignments/update/:id", (req, res) => {
   res.redirect("/assignments");
 });
 
-app.get("/assignments/delete/:id", (req, res) => {
+app.get("/assignments/:id/delete", (req, res) => {
   const id = req.params.id;
-  const index = findIndexById(id);
+  const index = findIndexByIdas(id);
 
   if (index !== -1) {
     assignments.splice(index, 1);
@@ -292,4 +293,243 @@ app.get("/assignments/delete/:id", (req, res) => {
 });
 
 
-app.listen(8080, () => console.log("server running at port http://localhost:8080!"));
+// ここからお土産アプリケーション 
+
+let souvenirs = [
+  {
+    id: 1,
+    name: "プレミアムバターサンド",
+    origin: "北海道",
+    category: "SWEETS",
+    price: "1,200円",
+    recommendation: "芳醇なバターの香りが，北の大地の記憶を呼び覚ます傑作です．",
+    featured: true
+  },
+  {
+    id: 2,
+    name: "金沢の金箔カステラ",
+    origin: "石川県",
+    category: "TRADITIONAL",
+    price: "2,500円",
+    recommendation: "加賀百万石の伝統を纏った，しっとりとした気品溢れる味わい．",
+    featured: false
+  }
+];
+
+const findIndexByIdso = (id) => {
+  return souvenirs.findIndex(item => item.id == id);
+};
+
+app.get("/souvenirs", (req, res) => {
+  const selectedOrigin = req.query.origin || "すべて";
+  
+  let filteredData = (selectedOrigin === "すべて") 
+    ? souvenirs 
+    : souvenirs.filter(s => s.origin === selectedOrigin);
+
+  const sortedData = [...filteredData].sort((a, b) => b.featured - a.featured);
+  
+  const origins = ["すべて", ...new Set(souvenirs.map(s => s.origin))];
+
+  res.render("souvenirs", { 
+    data: sortedData, 
+    origins: origins, 
+    selectedOrigin: selectedOrigin 
+  });
+});
+
+app.get("/souvenirs/create", (req, res) => {
+  res.render("souvenirs_create");
+});
+
+app.get("/souvenirs/:id", (req, res) => {
+  const id = req.params.id;
+  const index = findIndexByIdso(id);
+  if (index === -1) return res.redirect("/souvenirs"); 
+  res.render("souvenirs_detail", { item: souvenirs[index] });
+});
+
+app.post("/souvenirs", (req, res) => {
+  const newId = souvenirs.length > 0 ? Math.max(...souvenirs.map(s => s.id)) + 1 : 1;
+  const newItem = {
+    id: newId,
+    name: req.body.name,
+    origin: req.body.origin,
+    category: req.body.category,
+    price: req.body.price,
+    recommendation: req.body.recommendation,
+    featured: req.body.featured === "on"
+  };
+  souvenirs.push(newItem);
+  res.redirect("/souvenirs");
+});
+
+app.get("/souvenirs/:id/edit", (req, res) => {
+  const id = req.params.id;
+  const index = findIndexByIdso(id);
+  if (index === -1) return res.redirect("/souvenirs");
+  res.render("souvenirs_edit", { item: souvenirs[index] });
+});
+
+app.post("/souvenirs/:id/update", (req, res) => {
+  const id = req.params.id;
+  const index = findIndexByIdso(id);
+  if (index !== -1) {
+    souvenirs[index] = {
+      id: Number(id),
+      name: req.body.name,
+      origin: req.body.origin,
+      category: req.body.category,
+      price: req.body.price,
+      recommendation: req.body.recommendation,
+      featured: req.body.featured === "on"
+    };
+  }
+  res.redirect("/souvenirs");
+});
+
+app.get("/souvenirs/:id/delete", (req, res) => {
+  const id = req.params.id;
+  const index = findIndexByIdso(id);
+  if (index !== -1) {
+    souvenirs.splice(index, 1);
+  }
+  res.redirect("/souvenirs");
+});
+
+// ここから生徒管理アプリケーション
+
+let students = [
+  {
+    id: 1,
+    name: "佐藤 結衣",
+    schoolLevel: "高校生",
+    grade: "2年生",
+    schedules: [
+      { day: "月曜日", time: "18:00" },
+      { day: "水曜日", time: "19:30" }
+    ],
+    subjects: ["数学", "英語"],
+    isHighPriority: true,
+    memo: "定期テスト対策を重点的に実施中．"
+  }
+];
+
+const findIndexByIdSt = (id) => {
+  return students.findIndex(item => item.id == id);
+};
+
+app.get("/students", (req, res) => {
+  const { level, grade } = req.query;
+  
+  let filteredData = students;
+  if (level && level !== "すべて") filteredData = filteredData.filter(s => s.schoolLevel === level);
+  if (grade && grade !== "すべて") filteredData = filteredData.filter(s => s.grade === grade);
+
+  const sortedData = [...filteredData].sort((a, b) => b.isHighPriority - a.isHighPriority);
+  
+  const levels = ["すべて", "小学生", "中学生", "高校生"];
+  const grades = ["すべて", "1年生", "2年生", "3年生", "4年生", "5年生", "6年生"];
+
+  res.render("students", { 
+    data: sortedData, 
+    levels, 
+    grades, 
+    selectedLevel: level || "すべて",
+    selectedGrade: grade || "すべて"
+  });
+});
+
+app.get("/students/create", (req, res) => {
+  res.render("students_create");
+});
+
+app.get("/students/:id", (req, res) => {
+  const id = req.params.id;
+  const index = findIndexByIdSt(id);
+  if (index === -1) return res.redirect("/students"); 
+  res.render("students_detail", { item: students[index] });
+});
+
+const ensureArray = (input) => {
+  if (!input) return [];
+  return Array.isArray(input) ? input : [input];
+};
+
+app.post("/students", (req, res) => {
+  const newId = students.length > 0 ? Math.max(...students.map(s => s.id)) + 1 : 1;
+  
+  const days = ensureArray(req.body.day);
+  const times = ensureArray(req.body.time);
+  
+  const newItem = {
+    id: newId,
+    name: req.body.name,
+    schoolLevel: req.body.schoolLevel,
+    grade: req.body.grade,
+    schedules: days.map((d, i) => ({ day: d, time: times[i] })),
+    subjects: ensureArray(req.body.subjects),
+    isHighPriority: req.body.isHighPriority === "on",
+    memo: req.body.memo
+  };
+
+  students.push(newItem);
+  res.redirect("/students");
+});
+
+app.get("/students/:id/edit", (req, res) => {
+  const id = req.params.id;
+  const index = findIndexByIdSt(id);
+  if (index === -1) return res.redirect("/students");
+  res.render("students_edit", { item: students[index] });
+});
+
+app.post("/students/:id/update", (req, res) => {
+  const id = req.params.id;
+  const index = findIndexByIdSt(id);
+
+  if (index !== -1) {
+    const days = ensureArray(req.body.day);
+    const times = ensureArray(req.body.time);
+
+    students[index] = {
+      id: Number(id),
+      name: req.body.name,
+      schoolLevel: req.body.schoolLevel,
+      grade: req.body.grade,
+      schedules: days.map((d, i) => ({ day: d, time: times[i] })),
+      subjects: ensureArray(req.body.subjects),
+      isHighPriority: req.body.isHighPriority === "on",
+      memo: req.body.memo
+    };
+  }
+  res.redirect("/students/" + id);
+});
+
+app.get("/students/:id/delete", (req, res) => {
+  const id = req.params.id;
+  const index = findIndexByIdSt(id);
+  if (index !== -1) students.splice(index, 1);
+  res.redirect("/students");
+});
+
+//404への対応． ---
+app.use((req, res) => {
+  const path = req.path;
+
+  if (path.startsWith("/assignments/")) {
+    res.redirect("/assignments");
+  } 
+  else if (path.startsWith("/souvenirs/")) {
+    res.redirect("/souvenirs");
+  } 
+  else if (path.startsWith("/students/")) {
+    res.redirect("/students");
+  } 
+  else {
+    res.render("index");
+  }
+});
+
+
+app.listen(8080, () => console.log("server running at http://localhost:8080!"));

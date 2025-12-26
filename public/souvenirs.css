@@ -1,0 +1,189 @@
+        body {
+            font-family: "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .nakami {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #ccc; 
+            padding: 20px;
+        }
+
+        .header {
+            border-bottom: 2px solid #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .createbotan {
+            background-color: #f0f0f0;
+            color: #000;
+            text-decoration: none;
+            padding: 5px 15px;
+            border: 1px solid #999;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        .createbotan:hover {
+            background-color: #ddd;
+        }
+
+        .nanimonai {
+            padding: 20px;
+            background-color: #fff9e6;
+            border: 1px solid #ffeeba;
+        }
+
+        .list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .card {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .kyouka {
+            font-weight: bold;
+            color: #1500ff;   
+        }
+
+        .jyoutai {
+            background-color: #e0e0e0;
+            padding: 2px 8px;
+            font-size: 12px;
+        }
+
+        .title {
+            font-size: 18px;
+            margin: 5px 0 10px 0;
+            border-bottom: 1px dashed #ccc; 
+            padding-bottom: 5px;
+        }
+
+        .deadline {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .kigen {
+            color: #ff0000;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .actions {
+            margin-top: 10px;
+            font-size: 12px;
+        }
+
+        .actions a.edit {
+            color: #0000ff;
+            margin-right: 15px;
+        }
+
+        .actions a.delete {
+            color: #ff0000;
+        }
+
+        .form {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+            height: 50px;
+            resize: vertical;
+        }
+
+        .botanarea {
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .submitbotan {
+            cursor: pointer;
+            border: 1px solid #999;
+            font-family: inherit;
+        }
+
+        .detail-actions{
+            border-top: 1px solid #eee; 
+            padding-top: 10px; 
+            text-align: left;
+        }
+
+        .detail-item{
+            text-align: left; 
+            margin: 10px 0; 
+            line-height: 1.4; 
+            white-space: pre-line; 
+            color: #333;
+            font-size: 13px; 
+            margin-top: 5px;
+        }
+
+        .editc {
+            color: #ff0000; 
+        }
+
+        .filter-area {
+            margin-bottom: 20px;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .filter-link {
+            font-size: 13px;
+            text-decoration: none;
+            color: #666;
+            padding: 4px 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .filter-link.active {
+            background-color: #333;
+            color: #fff;
+            border-color: #333;
+        }
+
+        .souvenircard{
+            border: 1px solid #ccc; 
+            margin-bottom: 10px; 
+            padding: 10px;
+        }

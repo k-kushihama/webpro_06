@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/souvenirs.css">
+    <title>編集 - お土産一覧システム</title>
+</head>
+<body>
+    <div class="nakami">
+        <div class="header">
+            <h1>名品の編集</h1>
+            <a href="/souvenirs/<%= item.id %>" class="createbotan">詳細に戻る</a>
+        </div>
+
+        <form action="/souvenirs/<%= item.id %>/update" method="POST">
+            <div class="form">
+                <label>産地・地域</label>
+                <input type="text" name="origin" value="<%= item.origin %>" placeholder="例：北海道，石川県など" required>
+            </div>
+
+            <div class="form">
+                <label>銘柄・品名</label>
+                <input type="text" name="name" value="<%= item.name %>" placeholder="例：プレミアムバターサンド" required>
+            </div>
+
+            <div class="form">
+                <label>価格の目安</label>
+                <input type="text" name="price" value="<%= item.price %>" placeholder="例：1,200円">
+            </div>
+
+            <div class="form">
+                <label>種別（カテゴリー）</label>
+                <select name="category">
+                    <option value="SWEETS" <%= item.category === 'SWEETS' ? 'selected' : '' %>>SWEETS</option>
+                    <option value="TRADITIONAL" <%= item.category === 'TRADITIONAL' ? 'selected' : '' %>>TRADITIONAL</option>
+                    <option value="TEA" <%= item.category === 'TEA' ? 'selected' : '' %>>TEA</option>
+                    <option value="OTHER" <%= item.category === 'OTHER' ? 'selected' : '' %>>OTHER</option>
+                </select>
+            </div>
+
+            <div class="form" style="display: flex; align-items: center; gap: 10px; height: 50px;">
+                <input type="checkbox" name="featured" id="featured" <%= item.featured ? 'checked' : '' %> style="width: 20px; height: 20px; cursor: pointer;">
+                <label for="featured" style="margin-bottom: 0; cursor: pointer;">特におすすめとしてマークする</label>
+            </div>
+
+            <div class="form">
+                <label>おすすめ理由</label>
+                <textarea name="recommendation" style="height: 150px;" placeholder="おすすめした理由を入力してください．"><%= item.recommendation %></textarea>
+            </div>
+            
+            <div class="botanarea">
+                <button type="submit" class="createbotan submitbotan" style="height: 40px; padding: 0 30px;">更新を保存</button>
+                <a href="/souvenirs/<%= item.id %>" style="text-decoration: none;"><span class="editc">キャンセル</span></a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

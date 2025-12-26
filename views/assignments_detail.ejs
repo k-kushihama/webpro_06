@@ -3,26 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>課題詳細</title>
+    <link rel="stylesheet" href="/public/assignments.css">
+    <title>課題詳細 - 課題管理システム</title>
 </head>
 <body>
-    <div>
-        <a href="/assignments">← 一覧に戻る</a>
-        
-        <div>
-            <span><%= item.subject %></span>
-            <span><%= item.status %></span>
+    <div class="nakami">
+        <div class="header">
+            <h1>課題詳細</h1>
+            <a href="/assignments" class="createbotan">一覧に戻る</a>
         </div>
-        
-        <h1><%= item.title %></h1>
-        <div>提出期限: <%= item.deadline %></div>
-        
-        <div><%= item.desc %></div>
-        
-        <div>
-            <a href="/assignments/edit/<%= item.id %>">編集する</a>
-            <a href="/assignments/delete/<%= item.id %>" onclick="return confirm('本当に削除しますか？');">削除</a>
+
+        <div class="card">
+            <span class="kyouka"><%= item.subject %></span>
+            <span class="jyoutai">状態：<%= item.status %></span>
         </div>
+
+        <h2 class="title"><%= item.title %></h2>
+
+        <div class="deadline">
+            提出期限：<%= item.deadline %>
+        </div>
+
+        <% if (item.desc && item.desc.trim() !== "") { %>
+            <div class="detail-item"><%= item.desc %></div>
+        <% } %>
+
+        <div class="actions">
+            <div class="detail-actions">
+            <a href="/assignments/<%= item.id %>/edit" class="edit">この課題を編集する</a>
+            <a href="/assignments/<%= item.id %>/delete" class="delete">この課題を削除する</a>
+        </div></div>
     </div>
 </body>
 </html>

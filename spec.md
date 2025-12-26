@@ -33,12 +33,12 @@
 ```mermaid
 flowchart LR
     list["/assignments<br>課題一覧（カード表示）"]
-    detail["/assignments/detail/:id<br>詳細表示"]
+    detail["/assignments/:id<br>詳細表示"]
     create_form["/assignments/create<br>新規登録フォーム"]
     create_proc["POST /assignments<br>新規登録処理"]
-    edit_form["/assignments/edit/:id<br>編集フォーム"]
-    update_proc["POST /assignments/update/:id<br>更新処理"]
-    delete_proc["/assignments/delete/:id<br>削除処理"]
+    edit_form["/assignments/:id/edit<br>編集フォーム"]
+    update_proc["POST /assignments/:id/update<br>更新処理"]
+    delete_proc["/assignments/:id/delete<br>削除処理"]
     start((●))
 
     start --> list
@@ -46,6 +46,8 @@ flowchart LR
     %% 一覧からの遷移
     list -- 詳細リンク --> detail
     list -- 新規登録ボタン --> create_form
+    list -- 編集ボタン --> edit_form
+    list -- 削除ボタン --> delete_proc
 
     %% 詳細からの遷移
     detail -- 戻るリンク --> list

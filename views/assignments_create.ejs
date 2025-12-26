@@ -3,39 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新規登録</title>
+    <link rel="stylesheet" href="/public/assignments.css">
+    <title>新規登録 - 課題管理システム</title>
 </head>
 <body>
-    <div>
-        <h1>新規課題の登録</h1>
+    <div class="nakami">
+        <div class="header">
+            <h1 class="title" style="border-bottom: none; margin: 0;">新規課題の登録</h1>
+        </div>
+
         <form action="/assignments" method="POST">
-            <div>
-                <label>科目名</label>
-                <input type="text" name="subject" required>
+            <div class="form">
+                <label class="kyouka">科目名</label>
+                <input type="text" name="subject" placeholder="例：Webプログラミング" required>
             </div>
-            <div>
-                <label>課題タイトル</label>
-                <input type="text" name="title" required>
+
+            <div class="form">
+                <label class="kyouka">課題タイトル</label>
+                <input type="text" name="title" placeholder="例：仕様書提出" required>
             </div>
-            <div>
-                <label>提出期限</label>
+
+            <div class="form">
+                <label class="kyouka">提出期限</label>
                 <input type="date" name="deadline" required>
             </div>
-            <div>
-                <label>ステータス</label>
+
+            <div class="form">
+                <label class="kyouka">ステータス</label>
                 <select name="status">
                     <option value="未着手" selected>未着手</option>
                     <option value="進行中">進行中</option>
                     <option value="完了">完了</option>
                 </select>
             </div>
-            <div>
-                <label>詳細・メモ</label>
-                <textarea name="desc"></textarea>
+
+            <div class="form">
+                <label class="kyouka">詳細・メモ</label>
+                <textarea name="desc" placeholder="課題の詳細や注意点を入力してください．"></textarea>
             </div>
             
-            <button type="submit">登録する</button>
-            <a href="/assignments">キャンセル</a>
+            <div class="botanarea actions">
+                <button type="submit" class="createbotan">登録する</button>
+                <a href="/assignments" class="delete">キャンセルして戻る</a>
+            </div>
         </form>
     </div>
 </body>

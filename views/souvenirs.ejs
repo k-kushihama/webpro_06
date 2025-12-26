@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/souvenirs.css">
+    <title>お土産一覧システム</title>
+
+</head>
+<body>
+    <div class="nakami">
+        <div class="header">
+            <h1>おすすめのお土産</h1>
+            <a href="/souvenirs/create" class="createbotan">新規登録</a>
+        </div>
+
+        <div class="filter-area">
+            <% origins.forEach(origin => { %>
+                <a href="/souvenirs?origin=<%= origin %>" 
+                   class="filter-link <%= selectedOrigin === origin ? 'active' : '' %>">
+                    <%= origin %>
+                </a>
+            <% }) %>
+        </div>
+
+        <% if (data.length === 0) { %>
+            <div class="nanimonai">
+                <p>現在，紹介できるお土産はありません．</p>
+            </div>
+        <% } else { %>
+            <div class="list">
+                <% data.forEach(item => { %>
+                    <div class="souvenircard">
+                        <a href="/souvenirs/<%= item.id %>" style="text-decoration: none; color: black;">
+                            <div class="card">
+                                <span class="kyouka">[<%= item.origin %>]</span>
+                                <span class="jyoutai"><%= item.category %></span>
+                            </div>
+                            <div class="title"><%= item.name %></div>
+                            <div class="deadline">
+                                価格目安：<%= item.price %>
+                                <% if(item.featured) { %> 
+                                    <span class="kigen">（特別推奨！）</span> 
+                                <% } %>
+                            </div>
+                            <div class="detail-item">
+                                <%= item.recommendation.substring(0, 50) %><%= item.recommendation.length > 50 ? '...' : '' %>
+                            </div>
+                        </a>
+                        <div class="actions">
+                            <a href="/souvenirs/<%= item.id %>/edit" class="edit">編集する</a>
+                            <a href="/souvenirs/<%= item.id %>/delete" class="delete">削除</a>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>

@@ -3,145 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/assignments.css">
     <title>課題管理システム</title>
-    <style>
-        /* 全体の設定：いかにも「初期設定」という感じに */
-        body {
-            font-family: "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-            background-color: #ffffff;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            border: 1px solid #ccc; /* コンテナに枠線をつけるのが学生らしい */
-            padding: 20px;
-        }
-
-        /* ヘッダー：左寄せでシンプルに */
-        .header {
-            border-bottom: 2px solid #333;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .header h1 {
-            font-size: 24px;
-            margin: 0;
-        }
-
-        /* 新規作成ボタン：標準的なボタンのデザイン */
-        .btn-create {
-            background-color: #f0f0f0;
-            color: #000;
-            text-decoration: none;
-            padding: 5px 15px;
-            border: 1px solid #999;
-            border-radius: 3px;
-            font-size: 14px;
-        }
-
-        .btn-create:hover {
-            background-color: #ddd;
-        }
-
-        /* 課題がないときのメッセージ */
-        .no-data {
-            padding: 20px;
-            background-color: #fff9e6; /* 少し古臭い警告色 */
-            border: 1px solid #ffeeba;
-        }
-
-        /* 課題カード：カードというより「リストの枠」 */
-        .card-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .card {
-            border: 1px solid #ddd;
-            padding: 15px;
-            text-decoration: none;
-            color: inherit;
-            display: block; /* 全体をクリック可能に */
-        }
-
-        .card:hover {
-            background-color: #f9f9f9;
-        }
-
-        .card-top {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-
-        .subject {
-            font-weight: bold;
-            color: #0056b3; /* 典型的なリンクに近い青 */
-        }
-
-        .status {
-            background-color: #e0e0e0;
-            padding: 2px 8px;
-            font-size: 12px;
-        }
-
-        .title {
-            font-size: 18px;
-            margin: 5px 0 10px 0;
-            border-bottom: 1px dashed #ccc; /* 点線を使うのが学生っぽい */
-            padding-bottom: 5px;
-        }
-
-        .deadline-area {
-            font-size: 14px;
-            color: #666;
-        }
-
-        /* 緊急時の赤文字：直接的な「red」指定の雰囲気 */
-        .urgent {
-            color: #ff0000;
-            font-weight: bold;
-            margin-left: 10px;
-        }
-
-        /* 操作リンク：青い下線付きリンク */
-        .actions {
-            margin-top: 10px;
-            font-size: 12px;
-        }
-
-        .actions a {
-            color: #0000ee;
-            margin-right: 15px;
-        }
-
-        .actions a.delete {
-            color: #cc0000;
-        }
-    </style>
 </head>
 <body>
-    <div class="container">
+    <div class="nakami">
         <div class="header">
             <h1>課題一覧</h1>
-            <a href="/assignments/create" class="btn-create">新規登録</a>
+            <a href="/assignments/create" class="createbotan">新規登録</a>
         </div>
 
         <% if (data.length === 0) { %>
-            <div class="no-data">
+            <div class="nanimonai">
                 <p>現在，課題はありません．</p>
             </div>
         <% } else { %>
-            <div class="card-list">
+            <div class="list">
                 <% data.forEach(item => { %>
                     <% 
                        const today = new Date();
@@ -150,22 +27,22 @@
                        const isUrgent = diffDays <= 3 && diffDays >= 0; 
                     %>
                     <div style="border: 1px solid #ccc; margin-bottom: 10px; padding: 10px;">
-                        <a href="/assignments/detail/<%= item.id %>" style="text-decoration: none; color: black;">
-                            <div class="card-top">
-                                <span class="subject">[<%= item.subject %>]</span>
-                                <span class="status">状態：<%= item.status %></span>
+                        <a href="/assignments/<%= item.id %>" style="text-decoration: none; color: black;">
+                            <div class="card">
+                                <span class="kyouka">[<%= item.subject %>]</span>
+                                <span class="jyoutai">状態：<%= item.status %></span>
                             </div>
                             <div class="title"><%= item.title %></div>
-                            <div class="deadline-area">
+                            <div class="deadline">
                                 期限：<%= item.deadline %>
                                 <% if(isUrgent && item.status !== '完了') { %> 
-                                    <span class="urgent">（あと<%= diffDays %>日！）</span> 
+                                    <span class="kigen">（あと<%= diffDays %>日！）</span> 
                                 <% } %>
                             </div>
                         </a>
                         <div class="actions">
-                            <a href="/assignments/edit/<%= item.id %>">編集する</a>
-                            <a href="/assignments/delete/<%= item.id %>" class="delete">削除</a>
+                            <a href="/assignments/<%= item.id %>/edit" class="edit">編集する</a>
+                            <a href="/assignments/<%= item.id %>/delete" class="delete">削除</a>
                         </div>
                     </div>
                 <% }); %>

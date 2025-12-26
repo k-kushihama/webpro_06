@@ -16,39 +16,39 @@
 - [x] HTTPメソッドとリソース名一覧の作成 :writing_hand:
   - [x] `/assignments` 関連（一覧・登録）のルーティング定義
   - [x] `/assignments/:id` 関連（詳細・更新・削除）のルーティング定義
-- [ ] ドキュメントの構成の検討 :thinking:
-  - [ ] 概要 :writing_hand:
-  - [ ] HTTPメソッドとリソース名一覧 :writing_hand:
-  - [ ] データ構造 :writing_hand:
-  - [ ] リソース名ごとの機能の詳細 :writing_hand:
+- [x] ドキュメントの構成の検討 :thinking:
+  - [x] 概要 :writing_hand:
+  - [x] HTTPメソッドとリソース名一覧 :writing_hand:
+  - [x] データ構造 :writing_hand:
+  - [x] リソース名ごとの機能の詳細 :writing_hand:
 
 ## 管理者向けドキュメント
 
 システムの導入と保守に関する手順をまとめる．
 
-- [ ] インストールから起動までの手順確認 :computer:
-  - [ ] 必要な環境 (Node.js, npm等) の記述
-- [ ] インストール方法 :writing_hand:
-- [ ] 起動方法 :writing_hand:
-- [ ] 起動できない場合の対処法 :writing_hand:
-- [ ] 終了方法 :writing_hand:
-- [ ] 分かっている不具合・制限事項 :writing_hand:
+- [x] インストールから起動までの手順確認 :computer:
+  - [x] 必要な環境 (Node.js, npm等) の記述
+- [x] インストール方法 :writing_hand:
+- [x] 起動方法 :writing_hand:
+- [x] 起動できない場合の対処法 :writing_hand:
+- [x] 終了方法 :writing_hand:
+- [x] 分かっている不具合・制限事項 :writing_hand:
 
 ## 利用者向けドキュメント
 
 エンドユーザーがシステムを利用する際の手順をまとめる．
 
-- [ ] 構成の検討 :thinking:
-- [ ] スクリーンショットの保存と整理 :computer:
-  - [ ] 一覧，詳細，フォーム画面のキャプチャ撮影
-- [ ] 概要 :writing_hand:
-- [ ] 使用できる機能 :writing_hand:
-  - [ ] 起動画面 :writing_hand:
-  - [ ] 一覧表示 :writing_hand:
-  - [ ] 詳細表示 :writing_hand:
-  - [ ] データ追加 :writing_hand:
-  - [ ] データ編集 :writing_hand:
-  - [ ] データ削除 :writing_hand:
+- [x] 構成の検討 :thinking:
+- [x] スクリーンショットの保存と整理 :computer:
+  - [x] 一覧，詳細，フォーム画面のキャプチャ撮影
+- [x] 概要 :writing_hand:
+- [x] 使用できる機能 :writing_hand:
+  - [x] 起動画面 :writing_hand:
+  - [x] 一覧表示 :writing_hand:
+  - [x] 詳細表示 :writing_hand:
+  - [x] データ追加 :writing_hand:
+  - [x] データ編集 :writing_hand:
+  - [x] データ削除 :writing_hand:
 
 ## 完了
 

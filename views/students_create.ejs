@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/students.css">
+    <title>新規生徒登録 - 塾生徒管理システム</title>
+</head>
+<body>
+    <div class="nakami">
+        <div class="header">
+            <h1 class="title" style="border-bottom: none; margin: 0;">新規生徒の登録</h1>
+            <a href="/students" class="createbotan">一覧に戻る</a>
+        </div>
+
+        <form action="/students" method="POST">
+            <div class="form">
+                <label class="kyouka">生徒氏名</label>
+                <input type="text" name="name" placeholder="例：佐藤 結衣" required>
+            </div>
+
+            <div style="display: flex; gap: 20px;">
+                <div class="form" style="flex: 1;">
+                    <label class="kyouka">区分</label>
+                    <select name="schoolLevel" required>
+                        <option value="" disabled selected>選択してください</option>
+                        <option value="小学生">小学生</option>
+                        <option value="中学生">中学生</option>
+                        <option value="高校生">高校生</option>
+                    </select>
+                </div>
+                <div class="form" style="flex: 1;">
+                    <label class="kyouka">学年</label>
+                    <select name="grade" required>
+                        <option value="" disabled selected>選択してください</option>
+                        <% for(let i=1; i<=6; i++) { %>
+                            <option value="<%= i %>年生"><%= i %>年生</option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form">
+                <label class="kyouka">学習教科（複数選択可）</label>
+                <div class="kyoukanaiyou">
+                    <% const allSubjects = ["国語", "数学", "英語", "理科", "社会"]; %>
+                    <% allSubjects.forEach(sub => { %>
+                        <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; margin-bottom: 0; cursor: pointer;">
+                            <input type="checkbox" name="subjects" value="<%= sub %>" style="width: 18px; height: 18px;">
+                            <%= sub %>
+                        </label>
+                    <% }) %>
+                </div>
+            </div>
+
+            <div class="form">
+                <label class="kyouka">通塾スケジュール（最大7コマ）</label>
+                <div id="schedule-container" style="display: flex; flex-direction: column; gap: 10px;">
+                    <div class="schedule-row" style="display: flex; gap: 10px; align-items: center;">
+                        <select name="day" style="flex: 1;" required>
+                            <option value="月曜日">月曜日</option>
+                            <option value="火曜日">火曜日</option>
+                            <option value="水曜日">水曜日</option>
+                            <option value="木曜日">木曜日</option>
+                            <option value="金曜日">金曜日</option>
+                            <option value="土曜日">土曜日</option>
+                            <option value="日曜日">日曜日</option>
+                        </select>
+                        <input type="text" name="time" placeholder="例：18:00" style="flex: 1;" required>
+                        <button type="button" onclick="removeRow(this)" style="background: none; border: none; color: #ff0000; cursor: pointer; font-size: 20px; padding: 0 5px;">&times;</button>
+                    </div>
+                </div>
+                <div style="margin-top: 12px;">
+                    <button type="button" id="add-schedule" class="createbotan" style="width: 100%; background-color: #fcfcfc; border: 1px dashed #999; height: 40px;">＋ 新しいコマを追加する</button>
+                </div>
+            </div>
+
+            <div class="form" style="display: flex; align-items: center; gap: 10px; height: 50px;">
+                <input type="checkbox" name="isHighPriority" id="isHighPriority" style="width: 20px; height: 20px; cursor: pointer;">
+                <label for="isHighPriority" class="kyouka" style="margin-bottom: 0; cursor: pointer;">重点指導生徒として登録する</label>
+            </div>
+
+            <div class="form">
+                <label class="kyouka">備考・指導メモ</label>
+                <textarea name="memo" placeholder="指導上の注意点や進捗を記入してください．" style="height: 100px;"></textarea>
+            </div>
+            
+            <div class="botanarea actions">
+                <button type="submit" class="createbotan submitbotan" style="height: 45px; padding: 0 40px; font-weight: bold; background-color: #333; color: #fff;">登録を実行する</button>
+                <a href="/students" class="delete" style="text-decoration: none; font-size: 14px; margin-left: 10px;">キャンセルして戻る</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const container = document.getElementById('schedule-container');
+        const addButton = document.getElementById('add-schedule');
+
+        addButton.addEventListener('click', () => {
+            const rows = container.getElementsByClassName('schedule-row');
+            if (rows.length >= 7) {
+                alert('スケジュールは最大7コマまで登録可能です．');
+                return;
+            }
+            const newRow = rows[0].cloneNode(true);
+            newRow.querySelector('input').value = '';
+            container.appendChild(newRow);
+        });
+
+        function removeRow(btn) {
+            const rows = container.getElementsByClassName('schedule-row');
+            if (rows.length <= 1) {
+                alert('最低1つのスケジュールが必要です．');
+                return;
+            }
+            btn.parentElement.remove();
+        }
+    </script>
+</body>
+</html>
+
+

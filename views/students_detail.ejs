@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/students.css">
+    <title>生徒詳細 - 塾生徒管理システム</title>
+</head>
+<body>
+    <div class="nakami">
+        <div class="header">
+            <h1>生徒詳細</h1>
+            <a href="/students" class="createbotan">一覧に戻る</a>
+        </div>
+
+        <div class="card">
+            <span class="kyouka">区分：<%= item.schoolLevel %></span>
+            <span class="jyoutai">学年：<%= item.grade %></span>
+        </div>
+
+        <h2 class="title"><%= item.name %></h2>
+
+        <div class="deadline">
+            学習教科：<%= item.subjects.join("，") %>
+            <% if (item.isHighPriority) { %>
+                <span class="kigen" style="margin-left: 15px;">【重点指導生徒】</span>
+            <% } %>
+        </div>
+
+        <div class="detail-item" style="margin-top: 24px;">
+            <label class="studentdetail">スケジュール</label>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center;">
+                <% if (item.schedules && item.schedules.length > 0) { %>
+                    <% item.schedules.forEach(sch => { %><span class="studentsitem" style="margin: 0; display: flex; align-items: center; justify-content: center; height: 32px; line-height: 1;"><%= sch.day %> <%= sch.time %>〜</span><% }) %>
+                <% } else { %>
+                    <span style="color: #999; font-size: 13px; font-style: italic;">スケジュール未設定</span>
+                <% } %>
+            </div>
+        </div>
+
+        <% if (item.memo && item.memo.trim() !== "") { %>
+            <div class="detail-item" style="margin-top: 30px; border-left: 2px solid #ccc; padding-left: 15px;">
+                <label style="color: #888; font-size: 12px; letter-spacing: 0.1em; font-weight: bold;">備考・指導メモ</label>
+                <div style="margin-top: 10px;">
+                    <%= item.memo %>
+                </div>
+            </div>
+        <% } %>
+
+        <div class="actions">
+            <div class="detail-actions">
+                <a href="/students/<%= item.id %>/edit" class="edit">この生徒情報を編集する</a>
+                <a href="/students/<%= item.id %>/delete" class="delete">削除する</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

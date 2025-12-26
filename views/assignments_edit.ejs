@@ -3,25 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>編集</title>
+    <link rel="stylesheet" href="/public/assignments.css">
+    <title>編集 - 課題管理システム</title>
 </head>
 <body>
-    <div>
-        <h1>課題の編集</h1>
-        <form action="/assignments/update/<%= item.id %>" method="POST">
-            <div>
+    <div class="nakami">
+        <div class="header">
+            <h1>課題の編集</h1>
+        </div>
+
+        <form action="/assignments/<%= item.id %>/update" method="POST">
+            <div class="form">
                 <label>科目名</label>
                 <input type="text" name="subject" value="<%= item.subject %>" required>
             </div>
-            <div>
+
+            <div class="form">
                 <label>課題タイトル</label>
                 <input type="text" name="title" value="<%= item.title %>" required>
             </div>
-            <div>
+
+            <div class="form">
                 <label>提出期限</label>
                 <input type="date" name="deadline" value="<%= item.deadline %>" required>
             </div>
-            <div>
+
+            <div class="form">
                 <label>ステータス</label>
                 <select name="status">
                     <option value="未着手" <%= item.status === '未着手' ? 'selected' : '' %>>未着手</option>
@@ -29,13 +36,16 @@
                     <option value="完了" <%= item.status === '完了' ? 'selected' : '' %>>完了</option>
                 </select>
             </div>
-            <div>
+
+            <div class="form">
                 <label>詳細・メモ</label>
-                <textarea name="desc"><%= item.desc %></textarea>
+                <textarea name="desc" style="height: 120px;"><%= item.desc %></textarea>
             </div>
             
-            <button type="submit">更新を保存</button>
-            <a href="/assignments/detail/<%= item.id %>">キャンセル</a>
+            <div class="botanarea">
+                <button type="submit" class="createbotan submitbotan">更新を保存</button>
+                <a href="/assignments/<%= item.id %>"><span class="editc">キャンセル</span></a>
+            </div>
         </form>
     </div>
 </body>

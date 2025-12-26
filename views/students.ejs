@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/students.css">
+    <title>塾生徒管理システム</title>
+</head>
+<body>
+    <div class="nakami">
+        <div class="header">
+            <h1>生徒管理一覧</h1>
+            <a href="/students/create" class="createbotan">新規入塾登録</a>
+        </div>
+
+        <div class="filter-area" style="flex-direction: column; gap: 5px;">
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <span style="font-size: 12px; color: #888; width: 40px;">区分：</span>
+                <% levels.forEach(level => { %>
+                    <a href="/students?level=<%= level %>&grade=<%= selectedGrade %>" 
+                       class="filter-link <%= selectedLevel === level ? 'active' : '' %>">
+                        <%= level %>
+                    </a>
+                <% }) %>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center; margin-top: 5px;">
+                <span style="font-size: 12px; color: #888; width: 40px;">学年：</span>
+                <% grades.forEach(grade => { %>
+                    <a href="/students?level=<%= selectedLevel %>&grade=<%= grade %>" 
+                       class="filter-link <%= selectedGrade === grade ? 'active' : '' %>">
+                        <%= grade %>
+                    </a>
+                <% }) %>
+            </div>
+        </div>
+
+        <% if (data.length === 0) { %>
+            <div class="nanimonai">
+                <p>現在，該当する生徒はいません．</p>
+            </div>
+        <% } else { %>
+            <div class="list">
+                <% data.forEach(item => { %>
+                    <div class="studentcard">
+                        <a href="/students/<%= item.id %>" style="text-decoration: none; color: black;">
+                            <div class="card">
+                                <span class="kyouka">[<%= item.schoolLevel %> <%= item.grade %>]</span>
+                                <% if(item.isHighPriority) { %> 
+                                    <span class="kigen">重点指導</span> 
+                                <% } %>
+                            </div>
+                            <div class="title"><%= item.name %></div>
+                            
+                            <div class="deadline">
+                                <strong>学習教科：</strong>
+                                <span style="color: #333;"><%= item.subjects.join("，") %></span>
+                            </div>
+
+                            <div class="detail-item">
+                                <strong>通塾コマ：</strong><br>
+                                <% item.schedules.forEach(sch => { %>
+                                    <span class="studentsitem">
+                                        <%= sch.day %> <%= sch.time %>〜
+                                    </span>
+                                <% }) %>
+                            </div>
+                        </a>
+                        <div class="actions">
+                            <a href="/students/<%= item.id %>/edit" class="edit">情報を更新</a>
+                            <a href="/students/<%= item.id %>/delete" class="delete">削除</a>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>

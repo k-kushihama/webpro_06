@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/souvenirs.css">
+    <title>詳細 - お土産一覧システム</title>
+</head>
+<body>
+    <div class="nakami">
+        <div class="header">
+            <h1>名品の詳細</h1>
+            <a href="/souvenirs" class="createbotan">一覧に戻る</a>
+        </div>
+
+        <div class="card">
+            <span class="kyouka">産地：<%= item.origin %></span>
+            <span class="jyoutai">種別：<%= item.category %></span>
+        </div>
+
+        <h2 class="title"><%= item.name %></h2>
+
+        <div class="deadline">
+            価格の目安：<%= item.price %>
+            <% if (item.featured) { %>
+                <span class="kigen" style="margin-left: 15px;">【特別推奨品】</span>
+            <% } %>
+        </div>
+
+        <% if (item.recommendation && item.recommendation.trim() !== "") { %>
+            <div class="detail-item" style="margin-top: 30px; border-left: 2px solid #ccc; padding-left: 15px;">
+                <label style="color: #888; font-size: 12px; letter-spacing: 0.1em;">おすすめ理由</label>
+                <div style="margin-top: 10px;">
+                    <%= item.recommendation %>
+                </div>
+            </div>
+        <% } %>
+
+        <div class="actions">
+            <div class="detail-actions">
+                <a href="/souvenirs/<%= item.id %>/edit" class="edit">この情報を編集する</a>
+                <a href="/souvenirs/<%= item.id %>/delete" class="delete" onclick="return confirm('この名品の記録を削除してもよろしいですか？')">削除する</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
