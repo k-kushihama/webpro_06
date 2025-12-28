@@ -190,14 +190,14 @@ let assignments = [
     title: "仕様書提出",
     deadline: "2025-12-28",
     status: "進行中",
-    desc: ""
+    desc: "仕様書は，利用者向け，管理者向け，開発者向けの3部構成とします．3部を1つのPDFファイルにまとめて，下記ファイル名で提出してください．wpro2025.pdf，また，PDFの先頭に，Github上のリポジトリのURLを掲載しておいてください．"
   },
   {
     id: 2,
     subject: "アジャイルワーク1",
     title: "結合課題",
     deadline: "2025-12-16",
-    status: "進行中",
+    status: "完了",
     desc: ""
   },
   {
@@ -205,8 +205,64 @@ let assignments = [
     subject: "データサイエンス",
     title: "最終レポート",
     deadline: "2025-12-23",
-    status: "進行中",
+    status: "完了",
     desc: ""
+  },
+  {
+    id: 4,
+    subject: "グラフィックス",
+    title: "Autodesk Maya実習（12/2）",
+    deadline: "2025-12-08",
+    status: "完了",
+    desc: ""
+  },
+  {
+    id: 5,
+    subject: "英語表現基礎２aクラス",
+    title: "レポート",
+    deadline: "2025-12-11",
+    status: "完了",
+    desc: ""
+  },
+  {
+    id: 6,
+    subject: "フィジカルコンピューティング",
+    title: "期末レポート",
+    deadline: "2025-07-23",
+    status: "完了",
+    desc: ""
+  },
+  {
+    id: 7,
+    subject: "日本語表現法aクラス",
+    title: "課題④",
+    deadline: "2025-07-19",
+    status: "完了",
+    desc: ""
+  },
+  {
+    id: 8,
+    subject: "技術文章作成",
+    title: "第9回目レポート",
+    deadline: "2025-06-12",
+    status: "完了",
+    desc: "段落に何を記載するのかの概要を記述してtexファイルをコンパイルしてPDFファイルを提出せよ。"
+  },
+  {
+    id: 9,
+    subject: "論理回路",
+    title: "20250611課題",
+    deadline: "2025-06-11",
+    status: "完了",
+    desc: "講義スライドに示す課題に回答せよ．"
+  },
+  {
+    id: 10,
+    subject: "プログラミング言語",
+    title: "文字を大きく表示するライブラリ[プログラムと機能証明報告書]",
+    deadline: "2025-07-22",
+    status: "完了",
+    desc: "ファイル数が多くなるので，zipで圧縮し提出する．ファイル名はplang<学生番号>.zipとする．例：plang25G1999.zip"
   }
 ];
 
@@ -313,6 +369,78 @@ let souvenirs = [
     price: "2,500円",
     recommendation: "加賀百万石の伝統を纏った，しっとりとした気品溢れる味わい．",
     featured: false
+  },
+  {
+    id: 3,
+    name: "杜の都の月雫",
+    origin: "宮城県",
+    category: "SWEETS",
+    price: "1,500円",
+    recommendation: "ふんわりとしたカスタードが，杜の都の月明かりのように優しく口の中で溶けます．",
+    featured: true
+  },
+  {
+    id: 4,
+    name: "東京ばな奈",
+    origin: "東京都",
+    category: "SWEETS",
+    price: "1,100円",
+    recommendation: "都会の洗練と懐かしさが共存する，東京を代表する永遠のスタンダードです．",
+    featured: false
+  },
+  {
+    id: 5,
+    name: "駿河湾の職人パイ",
+    origin: "静岡県",
+    category: "SWEETS",
+    price: "1,300円",
+    recommendation: "職人の技が光る幾重もの層が，夜の団らんに華やかな彩りを添えます．",
+    featured: false
+  },
+  {
+    id: 6,
+    name: "古都の夕映え八ツ橋",
+    origin: "京都府",
+    category: "TRADITIONAL",
+    price: "1,000円",
+    recommendation: "古都の静寂を写し取ったような，繊細なニッキの香りと柔らかな食感．",
+    featured: true
+  },
+  {
+    id: 7,
+    name: "安芸の宮島もみじ",
+    origin: "広島県",
+    category: "SWEETS",
+    price: "1,200円",
+    recommendation: "厳島神社の紅葉を模した，しっとりとした生地と上品な餡の調和．",
+    featured: false
+  },
+  {
+    id: 8,
+    name: "博多通りもん",
+    origin: "福岡県",
+    category: "SWEETS",
+    price: "1,400円",
+    recommendation: "和洋が融合したミルク餡が，博多の活気と温もりを伝える至高の逸品．",
+    featured: true
+  },
+  {
+    id: 9,
+    name: "琉球王朝の琥珀菓子",
+    origin: "沖縄県",
+    category: "TRADITIONAL",
+    price: "800円",
+    recommendation: "太陽の恵みを感じる素朴な味わいに，琉球の歴史が息づいています．",
+    featured: false
+  },
+  {
+    id: 10,
+    name: "尾張の黄金海老煎",
+    origin: "愛知県",
+    category: "SAVORY",
+    price: "1,600円",
+    recommendation: "厳選された海老の旨味が凝縮された，五感を刺激する芳醇な磯の香り．",
+    featured: false
   }
 ];
 
@@ -412,6 +540,121 @@ let students = [
     subjects: ["数学", "英語"],
     isHighPriority: true,
     memo: "定期テスト対策を重点的に実施中．"
+  },
+  {
+    id: 2,
+    name: "田中 海斗",
+    schoolLevel: "中学生",
+    grade: "3年生",
+    schedules: [
+      { day: "火曜日", time: "19:00" },
+      { day: "金曜日", time: "18:30" }
+    ],
+    subjects: ["理科", "社会"],
+    isHighPriority: true,
+    memo: "志望校合格に向けた過去問演習に注力．苦手な物理分野の克服が鍵となる．"
+  },
+  {
+    id: 3,
+    name: "鈴木 陽菜",
+    schoolLevel: "小学生",
+    grade: "6年生",
+    schedules: [
+      { day: "木曜日", time: "17:00" }
+    ],
+    subjects: ["算数", "英語"],
+    isHighPriority: false,
+    memo: "中学入学準備コース．英検5級合格を目標とし，自信を深めるスモールステップを導入．"
+  },
+  {
+    id: 4,
+    name: "高橋 蓮",
+    schoolLevel: "高校生",
+    grade: "3年生",
+    schedules: [
+      { day: "月曜日", time: "20:00" },
+      { day: "木曜日", time: "20:00" },
+      { day: "土曜日", time: "14:00" }
+    ],
+    subjects: ["物理", "化学", "数学Ⅲ"],
+    isHighPriority: true,
+    memo: "難関国立大志望．演習の解答速度向上を目指し，ピーク・エンドの法則に基づき終盤に得意問題を配置．"
+  },
+  {
+    id: 5,
+    name: "伊藤 芽依",
+    schoolLevel: "中学生",
+    grade: "1年生",
+    schedules: [
+      { day: "水曜日", time: "18:00" }
+    ],
+    subjects: ["国語"],
+    isHighPriority: false,
+    memo: "読解力の基礎固め．ポジティブなフィードバックを増やし，学習への心理的安全性を確保中．"
+  },
+  {
+    id: 6,
+    name: "渡辺 陸",
+    schoolLevel: "高校生",
+    grade: "1年生",
+    schedules: [
+      { day: "火曜日", time: "19:30" },
+      { day: "金曜日", time: "19:30" }
+    ],
+    subjects: ["情報I", "数学"],
+    isHighPriority: false,
+    memo: "プログラミングに関心が高い．論理的思考を数学の証明問題に応用するアプローチを実施．"
+  },
+  {
+    id: 7,
+    name: "山本 結愛",
+    schoolLevel: "小学生",
+    grade: "4年生",
+    schedules: [
+      { day: "月曜日", time: "16:30" }
+    ],
+    subjects: ["算数"],
+    isHighPriority: false,
+    memo: "計算ミスを減らすためのルーチン化を指導．進捗の可視化で自己効力感を高める．"
+  },
+  {
+    id: 8,
+    name: "中村 蒼空",
+    schoolLevel: "高校生",
+    grade: "2年生",
+    schedules: [
+      { day: "水曜日", time: "20:00" },
+      { day: "土曜日", time: "16:00" }
+    ],
+    subjects: ["英語", "世界史探究"],
+    isHighPriority: false,
+    memo: "語彙力の定着に間隔反復（SRS）の概念を導入．長期記憶への移行を促す学習スケジュール．"
+  },
+  {
+    id: 9,
+    name: "小林 美緒",
+    schoolLevel: "中学生",
+    grade: "2年生",
+    schedules: [
+      { day: "木曜日", time: "18:30" },
+      { day: "日曜日", time: "10:00" }
+    ],
+    subjects: ["数学", "英語"],
+    isHighPriority: true,
+    memo: "中間テストでの得点20%アップを達成．現状維持バイアスを打破し，応用問題に挑戦中．"
+  },
+  {
+    id: 10,
+    name: "加藤 春樹",
+    schoolLevel: "高校生",
+    grade: "3年生",
+    schedules: [
+      { day: "火曜日", time: "20:30" },
+      { day: "金曜日", time: "20:30" }
+    ],
+    subjects: ["現代文", "言語文化"],
+    isHighPriority: true,
+    memo: "記述対策の最終仕上げ．文章構成の「型」を習得させ，認知負荷を低減する解答法を伝授．"
   }
 ];
 

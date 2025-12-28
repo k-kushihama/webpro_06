@@ -43,7 +43,16 @@
             <div class="form">
                 <label class="kyouka">学習教科（複数選択可）</label>
                 <div class="kyoukanaiyou">
-                    <% const allSubjects = ["国語", "数学", "英語", "理科", "社会"]; %>
+                    <% const allSubjects = ["国語", "現代文", "言語文化", "古典探究",
+                    "数学", "数学Ⅰ", "数学Ⅱ", "数学Ⅲ", "数学A", "数学B", "数学C",
+                    "英語", "英語コミュニケーション", "論理・表現",
+                    "理科", "物理基礎", "物理", "化学基礎", "化学", "生物基礎", "生物", "地学基礎", "地学",
+                    "社会", "地理総合", "地理探究", "歴史総合", "日本史探究", "世界史探究", "公共", "倫理", "政治・経済",
+                    "音楽", "美術", "工芸", "書道",
+                    "保健体育", "体育", "保健",
+                    "技術・家庭", "技術", "家庭科",
+                    "情報", "情報Ⅰ", "情報Ⅱ","算数", "生活", "図画工作", "道徳", "外国語活動",
+                    "総合的な学習の時間", "探究", "特別活動"]; %>
                     <% allSubjects.forEach(sub => { %>
                         <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; margin-bottom: 0; cursor: pointer;">
                             <input type="checkbox" name="subjects" value="<%= sub %>" style="width: 18px; height: 18px;">
