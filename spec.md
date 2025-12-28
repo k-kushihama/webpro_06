@@ -4,7 +4,7 @@
 
 ## 1. データ構造
 
-本システムでは，課題データを `assignments` 配列（オンメモリ）として管理する．
+本システムでは，課題データを `souvenirs` 配列（オンメモリ）として管理する．
 各フィールドはUI上の表示効率および拡張性を考慮し，以下の通り定義する．
 
 | 論理名 | 物理名 | 型 | 必須 | 説明 |
@@ -32,13 +32,13 @@
 
 ```mermaid
 flowchart LR
-    list["/assignments<br>課題一覧（カード表示）"]
-    detail["/assignments/:id<br>詳細表示"]
-    create_form["/assignments/create<br>新規登録フォーム"]
-    create_proc["POST /assignments<br>新規登録処理"]
-    edit_form["/assignments/:id/edit<br>編集フォーム"]
-    update_proc["POST /assignments/:id/update<br>更新処理"]
-    delete_proc["/assignments/:id/delete<br>削除処理"]
+    list["/souvenirs<br>お土産一覧（カード表示）"]
+    detail["/souvenirs/:id<br>詳細表示"]
+    create_form["/souvenirs/create<br>新規登録フォーム"]
+    create_proc["POST /souvenirs<br>新規登録処理"]
+    edit_form["/souvenirs/:id/edit<br>編集フォーム"]
+    update_proc["POST /souvenirs/:id/update<br>更新処理"]
+    delete_proc["/souvenirs/:id/delete<br>削除処理"]
     start((●))
 
     start --> list
@@ -70,7 +70,7 @@ flowchart LR
 
 ## 3.リソースごとの機能詳細
 
-### 3.1 課題一覧 (`/assignments`)
+### 3.1 課題一覧 (`/souvenirs`)
 
 - **デザイン**
   - **カードレイアウト**: 課題一つひとつをカードとして表現し，視認性を高める．
@@ -79,7 +79,7 @@ flowchart LR
   - 課題が0件の場合は，「現在課題はありません．」等のメッセージと，新規登録ボタンを目立たせて表示する．
 - **ソート機能**: デフォルトで「提出期限が近い順」に並び替えて表示する．
 
-### 3.2 詳細表示 (`/assignments/detail/:id`)
+### 3.2 詳細表示 (`/souvenirs/detail/:id`)
 
 - **UI面**: タイトルを最上部に大きく配置し，その直下に期限とステータスを配置する．詳細はその下に表示する．
 - **ナビゲーション**
@@ -99,6 +99,6 @@ flowchart LR
 
 - **サーバー処理**
    -  **パラメータ取得**: URLパラメータから削除対象の課題ID (`id`) を取得する．
-  - **配列検索**: `assignments` 配列を検索し，該当する `id` を持つ要素が配列の何番目（index）にあるかを特定する．
+  - **配列検索**: `souvenirs` 配列を検索し，該当する `id` を持つ要素が配列の何番目（index）にあるかを特定する．
   - **配列操作**: 特定した配列に対し，JavaScriptの標準メソッド `splice(index, 1)` を実行し，要素を削除する．
-  - **リダイレクト**: `res.redirect('/assignments')` を実行し，更新された一覧画面を表示する．
+  - **リダイレクト**: `res.redirect('/souvenirs')` を実行し，更新された一覧画面を表示する．
